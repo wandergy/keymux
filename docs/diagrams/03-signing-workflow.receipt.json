@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "workflow",
+  "input": "/Users/quincy/wandergy/keymux/docs/diagrams/03-signing-workflow.json",
+  "output": "/Users/quincy/wandergy/keymux/docs/diagrams/03-signing-workflow.html",
+  "specification": {
+    "sha256": "9ca88fa6fa3eb2e62389a3f5bd85dd75a5c561402237f4ad64ad57909d900906",
+    "bytes": 3357
+  },
+  "artifact": {
+    "sha256": "89fab0b8dc29af570f93ae2fb9add3b0fa483f5c756a847caa1219cb1387bf15",
+    "bytes": 707662
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  }
+}

@@ -1,0 +1,162 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Hyperliquid 下单与确认",
+    "locale": "zh-CN",
+    "quality_profile": "showcase",
+    "legend": {
+      "entries": {
+        "backend": {
+          "label": "流程处理"
+        },
+        "database": {
+          "label": "持久化与版本"
+        },
+        "security": {
+          "label": "验证与授权"
+        },
+        "external": {
+          "label": "外部服务"
+        }
+      }
+    }
+  },
+  "lanes": [
+    {
+      "id": "main",
+      "label": "原签名请求交付"
+    },
+    {
+      "id": "exceptions",
+      "label": "例外路径",
+      "variant": "exception"
+    }
+  ],
+  "mainPath": [
+    "freeze",
+    "digest",
+    "mpc",
+    "verify",
+    "send",
+    "confirm"
+  ],
+  "nodes": [
+    {
+      "id": "freeze",
+      "lane": "main",
+      "col": 0,
+      "type": "database",
+      "label": "冻结下单参数",
+      "sublabel": "固定 action、nonce 与期限",
+      "width": 142
+    },
+    {
+      "id": "digest",
+      "lane": "main",
+      "col": 1,
+      "type": "security",
+      "label": "构造 EIP-712 摘要",
+      "sublabel": "按 wire action 生成",
+      "width": 142
+    },
+    {
+      "id": "mpc",
+      "lane": "main",
+      "col": 2,
+      "type": "security",
+      "label": "人工与 Agent 共签",
+      "sublabel": "人工复核真实订单",
+      "width": 142
+    },
+    {
+      "id": "verify",
+      "lane": "main",
+      "col": 3,
+      "type": "security",
+      "label": "转换并验签",
+      "sublabel": "DER → r/s/v"
+    },
+    {
+      "id": "send",
+      "lane": "main",
+      "col": 4,
+      "type": "backend",
+      "label": "落盘后发送",
+      "sublabel": "保存原包和查询标识"
+    },
+    {
+      "id": "confirm",
+      "lane": "main",
+      "col": 5,
+      "type": "external",
+      "label": "逐单确认",
+      "sublabel": "核对订单执行状态"
+    },
+    {
+      "id": "unknown",
+      "lane": "exceptions",
+      "col": 4,
+      "type": "backend",
+      "label": "查询状态",
+      "sublabel": "按账户与 cloid／oid 查"
+    }
+  ],
+  "edges": [
+    {
+      "to": "digest",
+      "role": "main",
+      "from": "freeze"
+    },
+    {
+      "to": "mpc",
+      "role": "main",
+      "from": "digest"
+    },
+    {
+      "to": "verify",
+      "role": "main",
+      "from": "mpc"
+    },
+    {
+      "to": "send",
+      "role": "main",
+      "from": "verify"
+    },
+    {
+      "to": "confirm",
+      "role": "main",
+      "from": "send"
+    },
+    {
+      "to": "unknown",
+      "role": "branch",
+      "label": "UNKNOWN",
+      "from": "send",
+      "fromSide": "bottom"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "violet",
+      "title": "验签条件",
+      "items": [
+        "检查 r/s 范围与 low-s，恢复位唯一匹配聚合公钥，再从实际提交体重建并验签。"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "原请求重送",
+      "items": [
+        "有效期内只重送原签名请求。同 nonce 重送行为须经测试验证。"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "结果不明",
+      "items": [
+        "超时或断连后先查原订单。单次 unknownOid 不足以判定未执行，禁止自动换 nonce 下单。"
+      ]
+    }
+  ]
+}

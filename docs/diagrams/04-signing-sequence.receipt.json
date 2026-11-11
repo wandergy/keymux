@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "sequence",
+  "input": "/Users/quincy/wandergy/keymux/docs/diagrams/04-signing-sequence.json",
+  "output": "/Users/quincy/wandergy/keymux/docs/diagrams/04-signing-sequence.html",
+  "specification": {
+    "sha256": "f1786f0ae288c578d7aea9d83d283cfa6073aa9c768fcc48b6d813ee27c84faf",
+    "bytes": 3784
+  },
+  "artifact": {
+    "sha256": "b25fa6d8e5d65e65426ad1d1ad90ed5ad70630e2f6691b46103f5ef231d9398e",
+    "bytes": 713535
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  }
+}

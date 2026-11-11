@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Keymux · 技术设计图集</title>
+<style>
+:root{color-scheme:light dark;--bg:#f4f7fb;--panel:#fff;--ink:#122237;--muted:#53667d;--line:#d9e3ee;--accent:#087991;--soft:#e4f4f8}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC",sans-serif}
+main{max-width:1280px;margin:auto;padding:54px 32px 40px}a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}a:focus-visible{outline:3px solid var(--accent);outline-offset:4px}
+header{border-bottom:1px solid var(--line);padding-bottom:32px}.eyebrow{color:var(--accent);font-weight:650;font-size:12px;letter-spacing:.12em;margin:0 0 8px}h1{font-size:clamp(30px,4vw,48px);line-height:1.2;margin:8px 0 18px;letter-spacing:-.04em}
+header>p{max-width:800px;color:var(--muted);margin:10px 0}.pills,nav,.links{display:flex;flex-wrap:wrap;gap:12px}.pills{margin:22px 0}.pill{background:var(--soft);color:var(--accent);padding:4px 12px;border-radius:30px;font-size:13px}nav{gap:10px 24px;font-size:14px}
+section{margin-top:38px}.section-heading{margin-bottom:17px}h2{font-size:22px;margin:0}.section-heading p{color:var(--muted);margin:4px 0;font-size:14px}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}.card{background:var(--panel);border:1px solid var(--line);border-radius:14px;min-width:0}.preview{display:block;padding:10px 10px 0}.preview img{display:block;width:100%;height:auto;border:1px solid var(--line);border-radius:8px}.body{padding:20px}.body h3{font-size:18px;line-height:1.45;margin:0 0 10px}.body h3 a{color:var(--ink)}.body>p:not(.eyebrow){color:var(--muted);font-size:14px;margin:0 0 18px}.links{border-top:1px solid var(--line);padding-top:14px;font-size:13px;gap:8px 16px}.body .note{border-left:2px solid #b37712;padding-left:9px}
+footer{margin-top:40px;padding-top:22px;border-top:1px solid var(--line);color:var(--muted);font-size:13px}footer p{margin:5px 0}
+@media(max-width:960px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:620px){main{padding:28px 18px}.grid{grid-template-columns:1fr}}
+@media(prefers-color-scheme:dark){:root{--bg:#090f1b;--panel:#101a2b;--ink:#eef4fc;--muted:#afbed1;--line:#28364a;--accent:#60d1e1;--soft:#102e3a}}
+</style>
+</head>
+<body><main>
+<header><p class="eyebrow">KEYMUX / DESIGN ATLAS</p><h1>从共同审批，到共同签名。</h1>
+<p>11 张图串起系统边界、macOS 份额保护、多人协同协议与链上交付。基于技术设计草案绘制，不代表功能已实现。</p>
+<div class="pills"><span class="pill">11 张图 · 5 种视角</span><span class="pill">macOS 优先</span><span class="pill">t-of-n / Agent AND 人工</span><span class="pill">Archify 2.16</span></div>
+<nav aria-label="图集导航"><a href="#system">系统设计</a><a href="#signing">签名与链上交付</a><a href="#keys">密钥管理</a><a href="../technical-design.md">技术设计文档</a><a href="README.md">范围与检查记录</a></nav>
+</header>
+<section id="system"><div class="section-heading"><h2>系统设计</h2><p>先理解信任边界，再查看客户端与共享核心。</p></div><div class="grid"><article class="card">
+<a class="preview" href="01-system-architecture.html" aria-label="打开系统总体架构"><img src="01-system-architecture.visual-check.1440x900.light.png" alt="系统总体架构预览" loading="lazy" width="1440" height="900"></a>
+<div class="body"><p class="eyebrow">01 · 架构图</p><h3><a href="01-system-architecture.html">系统总体架构<span aria-hidden="true"> ↗</span></a></h3><p>协调服务、人工与 Agent 参与端，以及验签后的结果交付。</p>
+
+<div class="links"><a href="01-system-architecture.html">打开交互图</a><a href="01-system-architecture.json">源文件</a><a href="01-system-architecture.receipt.json">校验回执</a></div></div></article>
+<article class="card">
+<a class="preview" href="02-macos-secret-dataflow.html" aria-label="打开macOS 授权与份额数据流"><img src="02-macos-secret-dataflow.visual-check.1440x900.light.png" alt="macOS 授权与份额数据流预览" loading="lazy" width="1440" height="900"></a>
+<div class="body"><p class="eyebrow">02 · 数据流图</p><h3><a href="02-macos-secret-dataflow.html">macOS 授权与份额数据流<span aria-hidden="true"> ↗</span></a></h3><p>从不可变审核模型到 Touch ID、Keychain 与本地 FFI。</p>
+
+<div class="links"><a href="02-macos-secret-dataflow.html">打开交互图</a><a href="02-macos-secret-dataflow.json">源文件</a><a href="02-macos-secret-dataflow.receipt.json">校验回执</a></div></div></article>
+<article class="card">
+<a class="preview" href="11-cross-platform-architecture.html" aria-label="打开多端技术栈与复用边界"><img src="11-cross-platform-architecture.visual-check.1440x900.light.png" alt="多端技术栈与复用边界预览" loading="lazy" width="1440" height="900"></a>
+<div class="body"><p class="eyebrow">11 · 架构图</p><h3><a href="11-cross-platform-architecture.html">多端技术栈与复用边界<span aria-hidden="true"> ↗</span></a></h3><p>Flutter、SwiftUI、Rust 与 cb-mpc 的职责和平台扩展路径。</p>
+
+<div class="links"><a href="11-cross-platform-architecture.html">打开交互图</a><a href="11-cross-platform-architecture.json">源文件</a><a href="11-cross-platform-architecture.receipt.json">校验回执</a></div></div></article></div></section>
+<section id="signing"><div class="section-heading"><h2>签名与链上交付</h2><p>流程、时序和状态互相补充；签名成功与链上确认分别处理。</p></div><div class="grid"><article class="card">
+<a class="preview" href="03-signing-workflow.html" aria-label="打开签名请求与授权流程"><img src="03-signing-workflow.visual-check.1440x900.light.png" alt="签名请求与授权流程预览" loading="lazy" width="1440" height="900"></a>
+<div class="body"><p class="eyebrow">03 · 流程图</p><h3><a href="03-signing-workflow.html">签名请求与授权流程<span aria-hidden="true"> ↗</span></a></h3><p>验证参与规则、冻结输入、原生授权、执行 MPC 与验签。</p>
+
+<div class="links"><a href="03-signing-workflow.html">打开交互图</a><a href="03-signing-workflow.json">源文件</a><a href="03-signing-workflow.receipt.json">校验回执</a></div></div></article>
+<article class="card">
+<a class="preview" href="04-signing-sequence.html" aria-label="打开人机协同签名时序"><img src="04-signing-sequence.visual-check.1440x900.light.png" alt="人机协同签名时序预览" loading="lazy" width="1440" height="900"></a>
+<div class="body"><p class="eyebrow">04 · 时序图</p><h3><a href="04-signing-sequence.html">人机协同签名时序<span aria-hidden="true"> ↗</span></a></h3><p>上游、协调端、人工原生客户端与 Agent 的逐步交互。</p>
+
+<div class="links"><a href="04-signing-sequence.html">打开交互图</a><a href="04-signing-sequence.json">源文件</a><a href="04-signing-sequence.receipt.json">校验回执</a></div></div></article>
+<article class="card">
+<a class="preview" href="07-request-lifecycle.html" aria-label="打开签名请求与结果生命周期"><img src="07-request-lifecycle.visual-check.1440x900.light.png" alt="签名请求与结果生命周期预览" loading="lazy" width="1440" height="900"></a>
+<div class="body"><p class="eyebrow">07 · 状态图</p><h3><a href="07-request-lifecycle.html">签名请求与结果生命周期<span aria-hidden="true"> ↗</span></a></h3><p>分开建模请求、尝试、输出与有效性，保留未知结果。</p>
+
+<div class="links"><a href="07-request-lifecycle.html">打开交互图</a><a href="07-request-lifecycle.json">源文件</a><a href="07-request-lifecycle.receipt.json">校验回执</a></div></div></article>
+<article class="card">
+<a class="preview" href="08-hyperliquid-submission.html" aria-label="打开Hyperliquid 下单与确认"><img src="08-hyperliquid-submission.visual-check.1440x900.light.png" alt="Hyperliquid 下单与确认预览" loading="lazy" width="1440" height="900"></a>
+<div class="body"><p class="eyebrow">08 · 流程图</p><h3><a href="08-hyperliquid-submission.html">Hyperliquid 下单与确认<span aria-hidden="true"> ↗</span></a></h3><p>冻结 action 与 nonce，逐次共同签名，再提交并查询。</p>
+
+<div class="links"><a href="08-hyperliquid-submission.html">打开交互图</a><a href="08-hyperliquid-submission.json">源文件</a><a href="08-hyperliquid-submission.receipt.json">校验回执</a></div></div></article>
+<article class="card">
+<a class="preview" href="09-solana-submission.html" aria-label="打开Solana 交易签名与确认"><img src="09-solana-submission.visual-check.1440x900.light.png" alt="Solana 交易签名与确认预览" loading="lazy" width="1440" height="900"></a>
+<div class="body"><p class="eyebrow">09 · 流程图</p><h3><a href="09-solana-submission.html">Solana 交易签名与确认<span aria-hidden="true"> ↗</span></a></h3><p>message、ALT、签名槽、有效高度与原交易确认。</p>
+<p class="note">大屏下方留白偏多；内容完整，视觉平衡待优化。</p>
+<div class="links"><a href="09-solana-submission.html">打开交互图</a><a href="09-solana-submission.json">源文件</a><a href="09-solana-submission.receipt.json">校验回执</a></div></div></article></div></section>
+<section id="keys"><div class="section-heading"><h2>密钥管理</h2><p>密钥建立、份额刷新与恢复都有独立的一致性要求。</p></div><div class="grid"><article class="card">
+<a class="preview" href="05-dkg-sequence.html" aria-label="打开密钥组创建与激活时序"><img src="05-dkg-sequence.visual-check.1440x900.light.png" alt="密钥组创建与激活时序预览" loading="lazy" width="1440" height="900"></a>
+<div class="body"><p class="eyebrow">05 · 时序图</p><h3><a href="05-dkg-sequence.html">密钥组创建与激活时序<span aria-hidden="true"> ↗</span></a></h3><p>提案确认、协同 DKG、本地持久化和全员激活凭据。</p>
+
+<div class="links"><a href="05-dkg-sequence.html">打开交互图</a><a href="05-dkg-sequence.json">源文件</a><a href="05-dkg-sequence.receipt.json">校验回执</a></div></div></article>
+<article class="card">
+<a class="preview" href="06-share-refresh.html" aria-label="打开固定成员份额刷新"><img src="06-share-refresh.visual-check.1440x900.light.png" alt="固定成员份额刷新预览" loading="lazy" width="1440" height="900"></a>
+<div class="body"><p class="eyebrow">06 · 流程图</p><h3><a href="06-share-refresh.html">固定成员份额刷新<span aria-hidden="true"> ↗</span></a></h3><p>全员冻结、准备凭据、同父唯一后继与 EpochCommit。</p>
+
+<div class="links"><a href="06-share-refresh.html">打开交互图</a><a href="06-share-refresh.json">源文件</a><a href="06-share-refresh.receipt.json">校验回执</a></div></div></article>
+<article class="card">
+<a class="preview" href="10-key-lifecycle.html" aria-label="打开密钥组建立、刷新与恢复"><img src="10-key-lifecycle.visual-check.1440x900.light.png" alt="密钥组建立、刷新与恢复预览" loading="lazy" width="1440" height="900"></a>
+<div class="body"><p class="eyebrow">10 · 状态图</p><h3><a href="10-key-lifecycle.html">密钥组建立、刷新与恢复<span aria-hidden="true"> ↗</span></a></h3><p>从 DKG 到激活、冻结刷新、新公钥迁移和恢复边界。</p>
+
+<div class="links"><a href="10-key-lifecycle.html">打开交互图</a><a href="10-key-lifecycle.json">源文件</a><a href="10-key-lifecycle.receipt.json">校验回执</a></div></div></article></div></section>
+<footer><p>所有图均为独立 HTML，可在浏览器中打开。查看器提供明暗主题、缩放、路径探索与导出入口。</p><p>11 张图均通过 Showcase 9/9 校验；Solana 图的大屏视觉平衡仍有记录项。截图与校验回执保存在同目录，完整结果见 <a href="delivery-summary.json">交付记录</a>。</p></footer>
+</main></body></html>

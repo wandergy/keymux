@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "密钥组建立、刷新与恢复",
+    "locale": "zh-CN",
+    "quality_profile": "showcase",
+    "animation": "none",
+    "viewBox": [
+      1040,
+      660
+    ]
+  },
+  "lanes": [
+    {
+      "id": "main",
+      "label": "首次建组 · 全员在线"
+    },
+    {
+      "id": "refresh",
+      "label": "同组刷新 · 全员冻结并准备"
+    },
+    {
+      "id": "terminal",
+      "label": "切换结果与恢复边界"
+    }
+  ],
+  "states": [
+    {
+      "id": "proposal",
+      "type": "start",
+      "label": "共同确认提案",
+      "sublabel": "GroupProposal",
+      "lane": "main",
+      "col": 0,
+      "step": "01"
+    },
+    {
+      "id": "dkg",
+      "type": "active",
+      "label": "全员协同 DKG",
+      "sublabel": "各端只得自身 blob",
+      "lane": "main",
+      "col": 1,
+      "step": "02"
+    },
+    {
+      "id": "staging",
+      "type": "active",
+      "label": "本地持久化暂存",
+      "sublabel": "相同公钥与 Manifest",
+      "lane": "main",
+      "col": 2,
+      "step": "03"
+    },
+    {
+      "id": "receipts",
+      "type": "decision",
+      "label": "全员持久化确认",
+      "sublabel": "设备身份签名凭据",
+      "lane": "main",
+      "col": 3,
+      "step": "04"
+    },
+    {
+      "id": "active",
+      "type": "success",
+      "label": "组与本地份额激活",
+      "sublabel": "ACTIVE",
+      "lane": "main",
+      "col": 4,
+      "step": "05"
+    },
+    {
+      "id": "freeze",
+      "type": "waiting",
+      "label": "全员持久化冻结",
+      "sublabel": "等运行尝试结束",
+      "lane": "refresh",
+      "col": 2,
+      "tag": "FROZEN",
+      "width": 120
+    },
+    {
+      "id": "prepared",
+      "type": "waiting",
+      "label": "全员刷新并暂存",
+      "sublabel": "公钥不变 · 新 epoch",
+      "lane": "refresh",
+      "col": 1,
+      "tag": "PREPARED",
+      "width": 120
+    },
+    {
+      "id": "commit",
+      "type": "decision",
+      "label": "核验全员切换凭据",
+      "sublabel": "EpochCommit",
+      "lane": "terminal",
+      "col": 1,
+      "tag": "同父唯一子"
+    },
+    {
+      "id": "epochactive",
+      "type": "success",
+      "label": "新份额版本激活",
+      "sublabel": "ACTIVE · 新 shareEpoch",
+      "lane": "terminal",
+      "col": 2,
+      "tag": "不混用 epoch"
+    },
+    {
+      "id": "unavailable",
+      "type": "neutral",
+      "label": "恢复不足合法集合",
+      "sublabel": "冻结 · 无法签名",
+      "lane": "terminal",
+      "col": 0,
+      "tag": "不降门限"
+    }
+  ],
+  "transitions": [
+    {
+      "id": "begin-refresh",
+      "from": "active",
+      "to": "freeze"
+    },
+    {
+      "id": "refresh-all",
+      "from": "freeze",
+      "to": "prepared"
+    },
+    {
+      "id": "all-prepared",
+      "from": "prepared",
+      "to": "commit"
+    },
+    {
+      "id": "activate-epoch",
+      "from": "commit",
+      "to": "epochactive"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "DKG 激活的证据",
+      "items": [
+        "各端核验相同公钥、提案与清单；全员对 manifestDigest 作身份签名。",
+        "校验全员持久化 receipt 后才激活；半完成组不可签名，协调器无份额。"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "刷新不能自动回滚",
+      "items": [
+        "准备绑定 refreshAttempt、父 epoch／manifest 与 nextEpoch；同父只确认一个后继。",
+        "PREPARED 重启仍冻结；只重发同一 Commit，不重跑协议、不超时回退。"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "变更与恢复是独立路径",
+      "items": [
+        "成员／角色／门限改变：新 DKG、新公钥；旧组按原规则授权逐项迁移。",
+        "换机须有效备份、当前 epoch 和合法维护授权；不足 quorum 保持冻结，新公钥不能取回旧资产。"
+      ]
+    }
+  ]
+}

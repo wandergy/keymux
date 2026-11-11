@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "lifecycle",
+  "input": "/Users/quincy/wandergy/keymux/docs/diagrams/07-request-lifecycle.json",
+  "output": "/Users/quincy/wandergy/keymux/docs/diagrams/07-request-lifecycle.html",
+  "specification": {
+    "sha256": "e3aa296da793a64550cebefd42230972dfda6356938b23bce8af6bdbb19ab92e",
+    "bytes": 3698
+  },
+  "artifact": {
+    "sha256": "bcf06ec7f2f037d2d2fa3cabf8a9e1cf53490766264728a9eb0d1f60ccb69268",
+    "bytes": 710314
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  }
+}

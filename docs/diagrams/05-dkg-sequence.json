@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "diagram_type": "sequence",
+  "meta": {
+    "title": "密钥组创建与激活时序（设计稿）",
+    "locale": "zh-CN",
+    "quality_profile": "showcase",
+    "column_fit": "spread",
+    "viewBox": [
+      1460,
+      790
+    ]
+  },
+  "participants": [
+    {"id": "admin", "type": "external", "label": "管理员"},
+    {"id": "coordinator", "type": "backend", "label": "协调服务"},
+    {"id": "party-a", "type": "security", "label": "参与端 A"},
+    {"id": "party-b", "type": "security", "label": "其他参与端"}
+  ],
+  "segments": [
+    {"from": 147, "to": 325, "label": "全员确认提案"},
+    {"from": 343, "to": 445, "label": "分布式密钥生成"},
+    {"from": 463, "to": 725, "label": "全员确认后激活"}
+  ],
+  "messages": [
+    {"id": "submit-proposal", "from": "admin", "to": "coordinator", "y": 173, "label": "提交建组参数", "variant": "emphasis", "note": "包含算法、用途、成员身份公钥指纹和访问结构。纯人工组采用 t-of-n，人机组按指定 Agent 与人工门限配置。"},
+    {"id": "distribute-proposal", "from": "coordinator", "to": "party-b", "y": 214, "label": "向全员分发 GroupProposal", "note": "每个参与端独立核对用途、角色、规则和成员身份，经既有可信渠道验证首次配对。此时尚未生成聚合公钥。"},
+    {"id": "confirm-proposal", "from": "party-b", "to": "coordinator", "y": 255, "label": "全员确认同一 proposalDigest", "variant": "security"},
+    {"id": "start-dkg", "from": "coordinator", "to": "party-b", "y": 297, "label": "向全员发起独立 DKG attempt", "variant": "emphasis", "note": "所有成员需在线，端到端通道基于已确认提案固定设备身份。"},
+    {"id": "dkg-send", "from": "party-a", "to": "party-b", "y": 369, "label": "端到端 dkg_ac 协议消息", "variant": "security", "note": "A 与其他参与端代表全员交互。协调服务中继端到端认证流，每方最终只得到自己的份额 blob。"},
+    {"id": "dkg-return", "from": "party-b", "to": "party-a", "y": 414, "label": "dkg_ac 协议响应", "variant": "security"},
+    {"id": "manifest-a", "from": "party-a", "to": "coordinator", "y": 489, "label": "暂存本地份额后签署确认", "variant": "security", "note": "核验聚合公钥、公开份额和提案绑定。各端以实际聚合公钥和 proposalDigest 构造同一份 GroupManifest。设备身份签名绑定相同 manifestDigest，签名保存在清单之外的激活凭据。"},
+    {"id": "manifest-b", "from": "party-b", "to": "coordinator", "y": 538, "label": "其余成员暂存后签署同一 manifestDigest", "variant": "security", "note": "各端分别核验聚合公钥、公开份额和提案绑定，将自己的份额写入暂存版本，再签署持久化确认。"},
+    {"id": "credential", "from": "coordinator", "to": "party-b", "y": 587, "label": "全员签齐后分发激活凭据", "variant": "emphasis", "note": "凭据包含相同聚合公钥、proposalDigest、manifestDigest 及全员身份签名。完整私钥始终不重构，各份额留在各自设备。"},
+    {"id": "activate", "from": "party-b", "to": "coordinator", "y": 636, "label": "各端验凭据并激活本地份额", "variant": "return", "note": "各端保存受信清单与凭据。没有完成全员确认时，暂存份额不可用于签名。"},
+    {"id": "active", "from": "coordinator", "to": "admin", "y": 685, "label": "密钥组状态 ACTIVE", "variant": "return"}
+  ]
+}

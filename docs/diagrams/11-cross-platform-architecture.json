@@ -1,0 +1,33 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {"title": "Keymux · 多端技术栈与复用边界", "locale": "zh-CN", "quality_profile": "showcase", "viewBox": [1390, 710], "views": [
+    {"id": "shared-core", "label": "共享核心", "focus": ["flutter-ui", "c-abi", "rust-core", "cbmpc"], "note": "Flutter 复用交互；Rust 复用策略、输入编码、状态机和协议适配。"},
+    {"id": "mac-native", "label": "macOS 原生层", "focus": ["swiftui", "swift-security", "c-abi", "rust-core"], "note": "SwiftUI 负责可信审核入口，Swift 负责 Keychain 与指纹授权；单份 Rust 核心实例。"},
+    {"id": "expansion", "label": "扩展路径", "focus": ["future-clients", "flutter-ui", "agent-runtime", "rust-core"], "note": "其他客户端复用 UI 与核心，但系统安全桥和 cb-mpc 构建必须逐平台验证。"}
+  ]},
+  "components": [
+    {"id": "future-clients", "type": "external", "label": "后续客户端", "sublabel": "iOS / Android / Windows / Linux", "pos": [45, 70], "size": [280, 80]},
+    {"id": "swiftui", "type": "frontend", "label": "SwiftUI 审核界面", "sublabel": "macOS 原生确认窗口", "pos": [400, 70], "size": [230, 80]},
+    {"id": "swift-security", "type": "security", "label": "Swift 安全桥", "sublabel": "Keychain / Touch ID / CryptoKit", "pos": [750, 70], "size": [260, 80]},
+    {"id": "flutter-ui", "type": "frontend", "label": "Flutter 主界面", "sublabel": "请求 · 密钥组 · 审计", "pos": [45, 310], "size": [260, 80]},
+    {"id": "c-abi", "type": "backend", "label": "稳定 C ABI", "sublabel": "公开模型 / 不透明句柄", "pos": [400, 310], "size": [230, 80]},
+    {"id": "rust-core", "type": "backend", "label": "Rust 共享核心", "sublabel": "规则 / 适配器 / 状态 / 传输", "pos": [750, 310], "size": [260, 80]},
+    {"id": "cbmpc", "type": "security", "label": "cb-mpc", "sublabel": "C API / EdDSA / ECDSA", "pos": [1130, 310], "size": [230, 80]},
+    {"id": "agent-runtime", "type": "backend", "label": "Agent 独立进程", "sublabel": "Rust daemon + 本机安全存储", "pos": [750, 550], "size": [260, 80]}
+  ],
+  "connections": [
+    {"id": "future-ui-reuse", "from": "future-clients", "to": "flutter-ui", "label": "计划复用", "variant": "dashed", "labelDy": 80, "fromSide": "bottom", "toSide": "top"},
+    {"id": "flutter-public-api", "from": "flutter-ui", "to": "c-abi", "label": "Dart FFI", "variant": "emphasis"},
+    {"id": "swiftui-public-api", "from": "swiftui", "to": "c-abi", "label": "审核模型", "labelDy": 80},
+    {"id": "shared-instance", "from": "c-abi", "to": "rust-core", "label": "单份核心实例", "variant": "emphasis"},
+    {"id": "native-secret-transfer", "from": "swift-security", "to": "rust-core", "label": "秘密仅本地 FFI", "variant": "security", "labelDy": 80},
+    {"id": "mpc-c-api", "from": "rust-core", "to": "cbmpc", "label": "协议调用", "variant": "security"},
+    {"id": "agent-library-reuse", "from": "agent-runtime", "to": "rust-core", "label": "复用代码库"}
+  ],
+  "cards": [
+    {"dot": "cyan", "title": "一期 macOS", "items": ["Flutter 主界面 + SwiftUI 审核入口", "平台通道只承载公开状态和窗口操作", "Dart 与 Swift 指向同一原生核心实例"]},
+    {"dot": "rose", "title": "安全边界", "items": ["DEK 和明文份额不进入 Dart", "同进程分层不是隔离受攻陷内存的边界", "Agent 在独立设备持有自己的份额"]},
+    {"dot": "amber", "title": "多端扩展", "items": ["cb-mpc 候选基线：v0.2.2，锁定提交后集成", "原生 macOS / Linux；其他平台先完成构建 PoC", "逐平台实现安全存储、生物识别与发布签名"]}
+  ]
+}

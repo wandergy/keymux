@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "workflow",
+  "input": "/Users/quincy/wandergy/keymux/docs/diagrams/06-share-refresh.json",
+  "output": "/Users/quincy/wandergy/keymux/docs/diagrams/06-share-refresh.html",
+  "specification": {
+    "sha256": "0c56723d5f59f40b0f5533a503d0479780e316c4eda1976868fe837313bc81cb",
+    "bytes": 3281
+  },
+  "artifact": {
+    "sha256": "c278a1df4c57d55d1d01599247f563d77e26521a8277326277aad6961ea4d522",
+    "bytes": 706904
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  }
+}

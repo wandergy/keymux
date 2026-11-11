@@ -1,0 +1,156 @@
+{
+  "schema_version": 1,
+  "diagram_type": "lifecycle",
+  "meta": {
+    "title": "签名请求与结果生命周期",
+    "locale": "zh-CN",
+    "quality_profile": "showcase",
+    "animation": "none",
+    "viewBox": [
+      1040,
+      650
+    ]
+  },
+  "lanes": [
+    {
+      "id": "main",
+      "label": "Request · 业务阶段"
+    },
+    {
+      "id": "output",
+      "label": "输出事实 · 取消不能抹除"
+    },
+    {
+      "id": "terminal",
+      "label": "有效性另存 · 不覆盖输出"
+    }
+  ],
+  "states": [
+    {
+      "id": "received",
+      "type": "start",
+      "label": "接收请求",
+      "sublabel": "RECEIVED",
+      "lane": "main",
+      "col": 0,
+      "step": "01"
+    },
+    {
+      "id": "review",
+      "type": "active",
+      "label": "等待共同签名",
+      "sublabel": "PENDING_REVIEW",
+      "lane": "main",
+      "col": 1,
+      "step": "02"
+    },
+    {
+      "id": "prepare",
+      "type": "active",
+      "label": "固定尝试与授权",
+      "sublabel": "PREPARING",
+      "lane": "main",
+      "col": 2,
+      "step": "03"
+    },
+    {
+      "id": "signing",
+      "type": "active",
+      "label": "协议执行中",
+      "sublabel": "SIGNING",
+      "lane": "main",
+      "col": 3,
+      "step": "04"
+    },
+    {
+      "id": "signed",
+      "type": "success",
+      "label": "签名已验签落盘",
+      "sublabel": "SIGNED",
+      "lane": "main",
+      "col": 4,
+      "step": "05"
+    },
+    {
+      "id": "cancelled",
+      "type": "neutral",
+      "label": "未启动且取消",
+      "sublabel": "ABORTED / CANCELLED",
+      "lane": "output",
+      "col": 0,
+      "tag": "确定无输出"
+    },
+    {
+      "id": "unknown",
+      "type": "waiting",
+      "label": "中断且不能排除输出",
+      "sublabel": "保持未知 · 不自动重签",
+      "lane": "output",
+      "col": 1,
+      "tag": "OUTCOME_UNKNOWN"
+    },
+    {
+      "id": "cancelrace",
+      "type": "success",
+      "label": "取消后仍有签名",
+      "sublabel": "验签并持久化",
+      "lane": "output",
+      "col": 2,
+      "width": 126,
+      "tag": "默认不提交"
+    },
+    {
+      "id": "validity",
+      "type": "neutral",
+      "label": "请求有效性独立记录",
+      "sublabel": "STALE / EXPIRED",
+      "lane": "terminal",
+      "col": 1,
+      "width": 220,
+      "tag": "不是输出终态"
+    }
+  ],
+  "transitions": [
+    {
+      "id": "prestart-cancel",
+      "from": "prepare",
+      "to": "cancelled"
+    },
+    {
+      "id": "uncertain-output",
+      "from": "signing",
+      "to": "unknown"
+    },
+    {
+      "id": "cancel-output",
+      "from": "signing",
+      "to": "cancelrace"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "cyan",
+      "title": "Request 与 Attempt 分开",
+      "items": [
+        "Request 记录业务阶段；Attempt：PREPARED → AUTHORIZING → RUNNING → SUCCEEDED。",
+        "ABORTED 须可证未进入协议或无可用输出。仅未启动超时且请求有效可排队；新 attempt 重新授权。"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "输出与取消竞争",
+      "items": [
+        "SIGNED_WITH_CANCEL_REQUEST：取消先发生，后得有效签名；默认不提交。已先持久化结果则保留 SIGNED。",
+        "UNKNOWN 找到原有效结果后，按 cancelRequested 恢复 SIGNED 或取消后签名；没找到仍未知。"
+      ]
+    },
+    {
+      "dot": "violet",
+      "title": "Validity 独立叠加",
+      "items": [
+        "STALE / EXPIRED 阻止新尝试，不覆盖已有输出或 UNKNOWN。",
+        "格式／权限不符或明确否决为 REJECTED；仅确定未启动且无输出才可直接过期结束。"
+      ]
+    }
+  ]
+}

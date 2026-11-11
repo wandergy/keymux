@@ -1,0 +1,160 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "固定成员份额刷新",
+    "locale": "zh-CN",
+    "quality_profile": "showcase",
+    "legend": {
+      "entries": {
+        "database": {
+          "label": "持久化与版本"
+        },
+        "security": {
+          "label": "验证与授权"
+        },
+        "messagebus": {
+          "label": "会话协调"
+        }
+      }
+    }
+  },
+  "lanes": [
+    {
+      "id": "main",
+      "label": "份额版本切换"
+    },
+    {
+      "id": "exceptions",
+      "label": "例外路径",
+      "variant": "exception"
+    }
+  ],
+  "mainPath": [
+    "freeze",
+    "refresh",
+    "stage",
+    "prepared",
+    "commit",
+    "activate"
+  ],
+  "nodes": [
+    {
+      "id": "freeze",
+      "lane": "main",
+      "col": 0,
+      "type": "security",
+      "label": "全员冻结",
+      "sublabel": "本地落盘并等在途结束"
+    },
+    {
+      "id": "refresh",
+      "lane": "main",
+      "col": 1,
+      "type": "security",
+      "label": "全员运行 refresh_ac",
+      "sublabel": "原成员共同刷新",
+      "width": 152
+    },
+    {
+      "id": "stage",
+      "lane": "main",
+      "col": 2,
+      "type": "database",
+      "label": "暂存新份额",
+      "sublabel": "校验公钥不变"
+    },
+    {
+      "id": "prepared",
+      "lane": "main",
+      "col": 3,
+      "type": "security",
+      "label": "汇齐全员准备凭据",
+      "sublabel": "同一父版本仅一个后继",
+      "width": 132
+    },
+    {
+      "id": "commit",
+      "lane": "main",
+      "col": 4,
+      "type": "messagebus",
+      "label": "EpochCommit",
+      "sublabel": "核对绑定字段及全员签名",
+      "width": 132
+    },
+    {
+      "id": "activate",
+      "lane": "main",
+      "col": 5,
+      "type": "database",
+      "label": "各端激活新版本",
+      "sublabel": "收到并验证 commit 后切换",
+      "width": 142
+    },
+    {
+      "id": "wait",
+      "lane": "exceptions",
+      "col": 4,
+      "type": "database",
+      "label": "暂存待核对",
+      "sublabel": "继续冻结签名"
+    }
+  ],
+  "edges": [
+    {
+      "to": "refresh",
+      "role": "main",
+      "from": "freeze"
+    },
+    {
+      "to": "stage",
+      "role": "main",
+      "from": "refresh"
+    },
+    {
+      "to": "prepared",
+      "role": "main",
+      "from": "stage"
+    },
+    {
+      "to": "commit",
+      "role": "main",
+      "from": "prepared"
+    },
+    {
+      "to": "activate",
+      "role": "main",
+      "from": "commit"
+    },
+    {
+      "to": "wait",
+      "role": "branch",
+      "label": "未收到有效提交",
+      "from": "commit",
+      "fromSide": "bottom"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "violet",
+      "title": "准备凭据",
+      "items": [
+        "各端持久化新密文与本地保护项，凭据绑定刷新尝试、父版本、父清单摘要和新版本。"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "崩溃恢复",
+      "items": [
+        "重启维持冻结。协调服务可重发同一 EpochCommit。"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "处置限制",
+      "items": [
+        "全员必须可用。准备后继续同一切换或显式恢复／迁移，禁止超时自动回滚。"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,167 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "Solana 交易签名与确认",
+    "locale": "zh-CN",
+    "quality_profile": "showcase",
+    "legend": {
+      "entries": {
+        "frontend": {
+          "label": "用户操作与结果"
+        },
+        "backend": {
+          "label": "流程处理"
+        },
+        "database": {
+          "label": "持久化与版本"
+        },
+        "security": {
+          "label": "验证与授权"
+        },
+        "external": {
+          "label": "外部服务"
+        }
+      }
+    }
+  },
+  "lanes": [
+    {
+      "id": "main",
+      "label": "原交易提交"
+    },
+    {
+      "id": "exceptions",
+      "label": "例外路径",
+      "variant": "exception"
+    }
+  ],
+  "mainPath": [
+    "parse",
+    "freeze",
+    "mpc",
+    "verify",
+    "send",
+    "confirm"
+  ],
+  "nodes": [
+    {
+      "id": "parse",
+      "lane": "main",
+      "col": 0,
+      "type": "security",
+      "label": "解析 message 与 ALT",
+      "sublabel": "支持 legacy 与 v0",
+      "width": 152
+    },
+    {
+      "id": "freeze",
+      "lane": "main",
+      "col": 1,
+      "type": "database",
+      "label": "固定签名槽与有效高度",
+      "sublabel": "保留 blockhash 和原字节",
+      "width": 160
+    },
+    {
+      "id": "mpc",
+      "lane": "main",
+      "col": 2,
+      "type": "security",
+      "label": "MPC 签署 message",
+      "sublabel": "填入对应聚合公钥槽",
+      "width": 132
+    },
+    {
+      "id": "verify",
+      "lane": "main",
+      "col": 3,
+      "type": "security",
+      "label": "核验签名",
+      "sublabel": "检查全部必要签名"
+    },
+    {
+      "id": "send",
+      "lane": "main",
+      "col": 4,
+      "type": "backend",
+      "label": "持久化并提交原包",
+      "sublabel": "保存 wire bytes 与交易标识",
+      "width": 152
+    },
+    {
+      "id": "confirm",
+      "lane": "main",
+      "col": 5,
+      "type": "external",
+      "label": "按签名查链上状态",
+      "sublabel": "核对 err 与 commitment",
+      "width": 132
+    },
+    {
+      "id": "partial",
+      "lane": "exceptions",
+      "col": 3,
+      "type": "frontend",
+      "label": "部分签名",
+      "sublabel": "未齐全时仅返回结果"
+    }
+  ],
+  "edges": [
+    {
+      "to": "freeze",
+      "role": "main",
+      "from": "parse"
+    },
+    {
+      "to": "mpc",
+      "role": "main",
+      "from": "freeze"
+    },
+    {
+      "to": "verify",
+      "role": "main",
+      "from": "mpc"
+    },
+    {
+      "to": "send",
+      "role": "main",
+      "from": "verify"
+    },
+    {
+      "to": "confirm",
+      "role": "main",
+      "from": "send"
+    },
+    {
+      "to": "partial",
+      "role": "branch",
+      "label": "签名未齐",
+      "from": "verify",
+      "fromSide": "bottom"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "violet",
+      "title": "核对原交易",
+      "items": [
+        "发送结果不明时继续按第一签名查询，必要时查历史。"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "提交窗口",
+      "items": [
+        "有效高度内仅重发相同 wire bytes。超过有效高度停止发送。"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "替代请求",
+      "items": [
+        "过期或空查询不足以证明未执行。禁止自动换 blockhash 重签。"
+      ]
+    }
+  ]
+}

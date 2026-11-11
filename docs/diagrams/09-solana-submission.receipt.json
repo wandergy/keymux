@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "workflow",
+  "input": "/Users/quincy/wandergy/keymux/docs/diagrams/09-solana-submission.json",
+  "output": "/Users/quincy/wandergy/keymux/docs/diagrams/09-solana-submission.html",
+  "specification": {
+    "sha256": "a10e4555b3ceb11d4ee60de6316e16cfe986cc228dcc8b3c34cde433327c2321",
+    "bytes": 3379
+  },
+  "artifact": {
+    "sha256": "890badb0e91b0ebd19eba161fc4f9f1dec7bc5df4d9eed3f159a6ffb7eabae12",
+    "bytes": 707542
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  }
+}

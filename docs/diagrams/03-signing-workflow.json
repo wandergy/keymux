@@ -1,0 +1,166 @@
+{
+  "schema_version": 2,
+  "diagram_type": "workflow",
+  "meta": {
+    "title": "keymux 签名请求与授权",
+    "locale": "zh-CN",
+    "quality_profile": "showcase",
+    "legend": {
+      "entries": {
+        "frontend": {
+          "label": "用户操作与结果"
+        },
+        "backend": {
+          "label": "流程处理"
+        },
+        "database": {
+          "label": "持久化与版本"
+        },
+        "security": {
+          "label": "验证与授权"
+        },
+        "messagebus": {
+          "label": "会话协调"
+        }
+      }
+    }
+  },
+  "lanes": [
+    {
+      "id": "main",
+      "label": "签名主流程"
+    },
+    {
+      "id": "exceptions",
+      "label": "例外路径",
+      "variant": "exception"
+    }
+  ],
+  "mainPath": [
+    "policy",
+    "freeze",
+    "ready",
+    "authorize",
+    "mpc",
+    "verify"
+  ],
+  "nodes": [
+    {
+      "id": "policy",
+      "lane": "main",
+      "col": 0,
+      "type": "backend",
+      "label": "按组选择参与规则",
+      "sublabel": "人工门限或指定 Agent",
+      "width": 132
+    },
+    {
+      "id": "freeze",
+      "lane": "main",
+      "col": 1,
+      "type": "security",
+      "label": "验证并冻结签名包",
+      "sublabel": "绑定策略、份额版本与输入",
+      "width": 148
+    },
+    {
+      "id": "ready",
+      "lane": "main",
+      "col": 2,
+      "type": "messagebus",
+      "label": "固定就绪参与集合",
+      "sublabel": "各端独立复核本次尝试",
+      "width": 132
+    },
+    {
+      "id": "authorize",
+      "lane": "main",
+      "col": 3,
+      "type": "security",
+      "label": "Touch ID 读取份额",
+      "sublabel": "人工审阅实际待签内容",
+      "width": 144
+    },
+    {
+      "id": "mpc",
+      "lane": "main",
+      "col": 4,
+      "type": "security",
+      "label": "运行 MPC",
+      "sublabel": "端到端交换协议消息"
+    },
+    {
+      "id": "verify",
+      "lane": "main",
+      "col": 5,
+      "type": "database",
+      "label": "验签交付",
+      "sublabel": "验签后落盘，再交付"
+    },
+    {
+      "id": "stop",
+      "lane": "exceptions",
+      "col": 3,
+      "type": "frontend",
+      "label": "停止尝试",
+      "sublabel": "禁止进入协议"
+    }
+  ],
+  "edges": [
+    {
+      "to": "freeze",
+      "role": "main",
+      "from": "policy"
+    },
+    {
+      "to": "ready",
+      "role": "main",
+      "from": "freeze"
+    },
+    {
+      "to": "authorize",
+      "role": "main",
+      "from": "ready"
+    },
+    {
+      "to": "mpc",
+      "role": "main",
+      "from": "authorize"
+    },
+    {
+      "to": "verify",
+      "role": "main",
+      "from": "mpc"
+    },
+    {
+      "to": "stop",
+      "role": "error",
+      "label": "拒绝或取消",
+      "from": "authorize",
+      "fromSide": "bottom"
+    }
+  ],
+  "cards": [
+    {
+      "dot": "violet",
+      "title": "参与规则",
+      "items": [
+        "纯人工为 t-of-n。人机协同为指定 Agent 且至少 k 名人工。"
+      ]
+    },
+    {
+      "dot": "cyan",
+      "title": "协调服务",
+      "items": [
+        "只调度、中继及核对最终签名。份额留在签名端。"
+      ]
+    },
+    {
+      "dot": "amber",
+      "title": "运行后取消",
+      "items": [
+        "无法排除签名产出时记录 OUTCOME_UNKNOWN，先核对原结果。"
+      ]
+    }
+  ]
+}

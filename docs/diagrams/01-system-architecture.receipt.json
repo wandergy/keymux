@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "/Users/quincy/wandergy/keymux/docs/diagrams/01-system-architecture.json",
+  "output": "/Users/quincy/wandergy/keymux/docs/diagrams/01-system-architecture.html",
+  "specification": {
+    "sha256": "5f41c46388dc29f8732dc0141a9ce4ad247ef4a897e0480c6d9b69fc8296e1be",
+    "bytes": 3776
+  },
+  "artifact": {
+    "sha256": "1cee329c73c898b78749fbd6fdcb7e1da66ea9b5453adf749e7d1806b8d15425",
+    "bytes": 714033
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  }
+}

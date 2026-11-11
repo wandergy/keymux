@@ -1,0 +1,35 @@
+{
+  "schema_version": 1,
+  "diagram_type": "architecture",
+  "meta": {"title": "Keymux · 系统总体架构", "locale": "zh-CN", "quality_profile": "showcase", "viewBox": [1200, 678], "views": [
+    {"id": "control", "label": "请求与协调", "focus": ["upstream", "coordinator", "metadata"], "note": "上游签名请求经身份校验后入库；协调端不持有秘密份额。"},
+    {"id": "mpc", "label": "多方签名", "focus": ["human", "relay", "agent"], "note": "参与端独立验证输入，通过不透明中继建立端到端 mTLS 会话。"},
+    {"id": "output", "label": "结果与提交", "focus": ["human", "receiver", "submitter", "destinations"], "note": "选定参与方验签落盘；协调服务的授权 worker 持久化原包后交付或提交。"}
+  ]},
+  "components": [
+    {"id": "upstream", "type": "external", "label": "上游应用", "sublabel": "管理平台 / 自动化", "pos": [50, 70], "size": [210, 76]},
+    {"id": "coordinator", "type": "backend", "label": "Rust 协调服务", "sublabel": "请求 · 策略 · 会话调度", "pos": [390, 70], "size": [230, 76]},
+    {"id": "metadata", "type": "database", "label": "PostgreSQL", "sublabel": "元数据 · 状态 · 审计", "pos": [760, 70], "size": [220, 76]},
+    {"id": "human", "type": "frontend", "label": "人工签名端 × n", "sublabel": "Flutter / Swift / Rust / cb-mpc", "pos": [50, 300], "size": [230, 80]},
+    {"id": "relay", "type": "messagebus", "label": "不透明消息中继", "sublabel": "转发端到端加密流量", "pos": [390, 300], "size": [230, 80]},
+    {"id": "agent", "type": "security", "label": "Agent 签名端", "sublabel": "Rust / cb-mpc · 独立份额", "pos": [760, 300], "size": [230, 80]},
+    {"id": "receiver", "type": "security", "label": "结果接收角色", "sublabel": "选定参与端验签并持久化", "pos": [50, 530], "size": [230, 80]},
+    {"id": "submitter", "type": "backend", "label": "协调端授权 worker", "sublabel": "持久化原包 · 交付或提交", "pos": [390, 530], "size": [230, 80]},
+    {"id": "destinations", "type": "external", "label": "业务验证方 / 链网络", "sublabel": "Ed25519 · Hyperliquid · Solana", "pos": [760, 530], "size": [250, 80]}
+  ],
+  "connections": [
+    {"id": "application-request", "from": "upstream", "to": "coordinator", "label": "认证请求", "variant": "emphasis"},
+    {"id": "persist-state", "from": "coordinator", "to": "metadata", "label": "状态与审计"},
+    {"id": "schedule-session", "from": "coordinator", "to": "relay", "label": "调度会话", "labelDy": 75},
+    {"id": "human-tunnel", "from": "human", "to": "relay", "label": "mTLS 密文", "variant": "security"},
+    {"id": "agent-tunnel", "from": "relay", "to": "agent", "label": "mTLS 密文", "variant": "security"},
+    {"id": "participant-receives", "from": "human", "to": "receiver", "label": "兼任角色", "labelDy": 75},
+    {"id": "persist-output", "from": "receiver", "to": "submitter", "label": "已验签结果", "variant": "emphasis"},
+    {"id": "deliver-output", "from": "submitter", "to": "destinations", "label": "交付 / 提交", "variant": "emphasis"}
+  ],
+  "cards": [
+    {"dot": "cyan", "title": "参与规则", "items": ["纯人工：t-of-n，2 ≤ t ≤ n", "混合组：指定 Agent AND k-of-m 人工", "Hyperliquid 每次签名必须有人参与"]},
+    {"dot": "rose", "title": "信任边界", "items": ["协调端不是 MPC 参与方，不接触明文份额", "箭头表示主路径，MPC 通道实际双向", "worker 是协调端角色，链上确认另行跟踪"]},
+    {"dot": "amber", "title": "设计状态", "items": ["依据 technical-design.md，尚非已部署系统", "人工份额由 Keychain + Touch ID 解锁", "细分原生安全路径见图 02"]}
+  ]
+}

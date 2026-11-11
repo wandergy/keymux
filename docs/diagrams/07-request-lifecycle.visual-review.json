@@ -1,0 +1,24 @@
+{
+  "diagram_type": "lifecycle",
+  "output": "/Users/quincy/wandergy/keymux/docs/diagrams/07-request-lifecycle.html",
+  "specification_sha256": "e3aa296da793a64550cebefd42230972dfda6356938b23bce8af6bdbb19ab92e",
+  "artifact_sha256": "bcf06ec7f2f037d2d2fa3cabf8a9e1cf53490766264728a9eb0d1f60ccb69268",
+  "validation": "9/9 showcase, 0 errors, 0 warnings",
+  "visual_review": "passed",
+  "correction_rounds": 2,
+  "evidence": "07-request-lifecycle.visual-check.json",
+  "screenshots_inspected": [
+    "07-request-lifecycle.visual-check.1440x900.light.png",
+    "07-request-lifecycle.visual-check.1440x900.dark.png",
+    "07-request-lifecycle.visual-check.2048x1320.light.png",
+    "07-request-lifecycle.visual-check.2048x1320.dark.png"
+  ],
+  "observations": [
+    "All four desktop containment measurements pass.",
+    "Inspected light and dark screenshots at smallest and largest required viewports.",
+    "No node clipping, relationship crossing, or card overflow observed; necessary cards occupy the lower reading area."
+  ],
+  "not_checked": [
+    "Interactive search, focus, passport closure and export UI were not exercised."
+  ]
+}

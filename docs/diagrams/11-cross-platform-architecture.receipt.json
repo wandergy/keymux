@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "architecture",
+  "input": "/Users/quincy/wandergy/keymux/docs/diagrams/11-cross-platform-architecture.json",
+  "output": "/Users/quincy/wandergy/keymux/docs/diagrams/11-cross-platform-architecture.html",
+  "specification": {
+    "sha256": "9507fa6b35e32175856dd59a1c3183827db63e6be4946171d5af452e53a7ec39",
+    "bytes": 3710
+  },
+  "artifact": {
+    "sha256": "ae1f565bcb9dcd134e9a7e51f8fc555728470add1fa509970a1b80ea2148fa05",
+    "bytes": 711501
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  }
+}

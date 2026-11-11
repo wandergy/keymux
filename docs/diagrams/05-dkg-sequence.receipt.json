@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "sequence",
+  "input": "/Users/quincy/wandergy/keymux/docs/diagrams/05-dkg-sequence.json",
+  "output": "/Users/quincy/wandergy/keymux/docs/diagrams/05-dkg-sequence.html",
+  "specification": {
+    "sha256": "f344ad1e7fe024d0e933f500f26ce9f182cbe06c59ede000b952838bcf82d563",
+    "bytes": 3515
+  },
+  "artifact": {
+    "sha256": "9423e9f5173446fbb18b349cf7eeec34a4430728fc45676bf106052bfb663195",
+    "bytes": 710741
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  }
+}

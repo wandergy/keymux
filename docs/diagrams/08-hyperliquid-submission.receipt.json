@@ -1,0 +1,24 @@
+{
+  "schemaVersion": 1,
+  "ok": true,
+  "command": "deliver",
+  "type": "workflow",
+  "input": "/Users/quincy/wandergy/keymux/docs/diagrams/08-hyperliquid-submission.json",
+  "output": "/Users/quincy/wandergy/keymux/docs/diagrams/08-hyperliquid-submission.html",
+  "specification": {
+    "sha256": "cd105cf501b9758aec53f243f93624c27600488c53c9aeacb3c11a6eed9584b3",
+    "bytes": 3289
+  },
+  "artifact": {
+    "sha256": "bd904c0581165edd32de7d1bbe7840e680351e705725de27cddb0f97162bdec9",
+    "bytes": 706928
+  },
+  "validation": {
+    "checksPassed": 9,
+    "checkCount": 9,
+    "compositionProfile": "showcase",
+    "compositionStatus": "pass",
+    "errors": 0,
+    "warnings": 0
+  }
+}

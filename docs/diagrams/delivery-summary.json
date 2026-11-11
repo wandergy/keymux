@@ -1,0 +1,303 @@
+{
+  "schema_version": 1,
+  "generator": "Archify 2.16",
+  "design_status": "design_draft_not_implemented",
+  "design_source": {
+    "path": "../technical-design.md",
+    "sha256": "751188041159b026d13627873a671cf589dde1de21748e904090f632b5350491"
+  },
+  "automated_visual_review_note": "Archify 的自动视觉回执固定为 pending；本文件的 visual_review 是实际截图复核结果。",
+  "unchecked": [
+    "查看器搜索、焦点与导出控件未逐项操作",
+    "未执行 MPC、Touch ID 或链上真实交易测试"
+  ],
+  "diagrams": [
+    {
+      "id": "01-system-architecture",
+      "diagram_type": "architecture",
+      "output": "01-system-architecture.html",
+      "specification": {
+        "sha256": "5f41c46388dc29f8732dc0141a9ce4ad247ef4a897e0480c6d9b69fc8296e1be",
+        "bytes": 3776
+      },
+      "artifact": {
+        "sha256": "1cee329c73c898b78749fbd6fdcb7e1da66ea9b5453adf749e7d1806b8d15425",
+        "bytes": 714033
+      },
+      "validation": {
+        "checksPassed": 9,
+        "checkCount": 9,
+        "compositionProfile": "showcase",
+        "compositionStatus": "pass",
+        "errors": 0,
+        "warnings": 0
+      },
+      "desktop_containment": "passed",
+      "visual_review": "passed",
+      "correction_rounds": 2,
+      "receipt": "01-system-architecture.receipt.json",
+      "visual_evidence": "01-system-architecture.visual-check.html"
+    },
+    {
+      "id": "02-macos-secret-dataflow",
+      "diagram_type": "dataflow",
+      "output": "02-macos-secret-dataflow.html",
+      "specification": {
+        "sha256": "f862c7d9722439955582a4fe595239879026f0bfb5aed3f67efa514095f48e07",
+        "bytes": 3234
+      },
+      "artifact": {
+        "sha256": "d4615ef79dd7ea35b78cd7dd1ba3898b28e79b1f4ba689472e0642f17048a516",
+        "bytes": 710402
+      },
+      "validation": {
+        "checksPassed": 9,
+        "checkCount": 9,
+        "compositionProfile": "showcase",
+        "compositionStatus": "pass",
+        "errors": 0,
+        "warnings": 0
+      },
+      "desktop_containment": "passed",
+      "visual_review": "passed",
+      "correction_rounds": 0,
+      "receipt": "02-macos-secret-dataflow.receipt.json",
+      "visual_evidence": "02-macos-secret-dataflow.visual-check.html"
+    },
+    {
+      "id": "03-signing-workflow",
+      "diagram_type": "workflow",
+      "output": "03-signing-workflow.html",
+      "specification": {
+        "sha256": "9ca88fa6fa3eb2e62389a3f5bd85dd75a5c561402237f4ad64ad57909d900906",
+        "bytes": 3357
+      },
+      "artifact": {
+        "sha256": "89fab0b8dc29af570f93ae2fb9add3b0fa483f5c756a847caa1219cb1387bf15",
+        "bytes": 707662
+      },
+      "validation": {
+        "checksPassed": 9,
+        "checkCount": 9,
+        "compositionProfile": "showcase",
+        "compositionStatus": "pass",
+        "errors": 0,
+        "warnings": 0
+      },
+      "desktop_containment": "passed",
+      "visual_review": "passed",
+      "correction_rounds": 2,
+      "receipt": "03-signing-workflow.receipt.json",
+      "visual_evidence": "03-signing-workflow.visual-check.html"
+    },
+    {
+      "id": "04-signing-sequence",
+      "diagram_type": "sequence",
+      "output": "04-signing-sequence.html",
+      "specification": {
+        "sha256": "f1786f0ae288c578d7aea9d83d283cfa6073aa9c768fcc48b6d813ee27c84faf",
+        "bytes": 3784
+      },
+      "artifact": {
+        "sha256": "b25fa6d8e5d65e65426ad1d1ad90ed5ad70630e2f6691b46103f5ef231d9398e",
+        "bytes": 713535
+      },
+      "validation": {
+        "checksPassed": 9,
+        "checkCount": 9,
+        "compositionProfile": "showcase",
+        "compositionStatus": "pass",
+        "errors": 0,
+        "warnings": 0
+      },
+      "desktop_containment": "passed",
+      "visual_review": "passed",
+      "correction_rounds": 1,
+      "receipt": "04-signing-sequence.receipt.json",
+      "visual_evidence": "04-signing-sequence.visual-check.html"
+    },
+    {
+      "id": "05-dkg-sequence",
+      "diagram_type": "sequence",
+      "output": "05-dkg-sequence.html",
+      "specification": {
+        "sha256": "f344ad1e7fe024d0e933f500f26ce9f182cbe06c59ede000b952838bcf82d563",
+        "bytes": 3515
+      },
+      "artifact": {
+        "sha256": "9423e9f5173446fbb18b349cf7eeec34a4430728fc45676bf106052bfb663195",
+        "bytes": 710741
+      },
+      "validation": {
+        "checksPassed": 9,
+        "checkCount": 9,
+        "compositionProfile": "showcase",
+        "compositionStatus": "pass",
+        "errors": 0,
+        "warnings": 0
+      },
+      "desktop_containment": "passed",
+      "visual_review": "passed",
+      "correction_rounds": 1,
+      "receipt": "05-dkg-sequence.receipt.json",
+      "visual_evidence": "05-dkg-sequence.visual-check.html"
+    },
+    {
+      "id": "06-share-refresh",
+      "diagram_type": "workflow",
+      "output": "06-share-refresh.html",
+      "specification": {
+        "sha256": "0c56723d5f59f40b0f5533a503d0479780e316c4eda1976868fe837313bc81cb",
+        "bytes": 3281
+      },
+      "artifact": {
+        "sha256": "c278a1df4c57d55d1d01599247f563d77e26521a8277326277aad6961ea4d522",
+        "bytes": 706904
+      },
+      "validation": {
+        "checksPassed": 9,
+        "checkCount": 9,
+        "compositionProfile": "showcase",
+        "compositionStatus": "pass",
+        "errors": 0,
+        "warnings": 0
+      },
+      "desktop_containment": "passed",
+      "visual_review": "passed",
+      "correction_rounds": 2,
+      "receipt": "06-share-refresh.receipt.json",
+      "visual_evidence": "06-share-refresh.visual-check.html"
+    },
+    {
+      "id": "07-request-lifecycle",
+      "diagram_type": "lifecycle",
+      "output": "07-request-lifecycle.html",
+      "specification": {
+        "sha256": "e3aa296da793a64550cebefd42230972dfda6356938b23bce8af6bdbb19ab92e",
+        "bytes": 3698
+      },
+      "artifact": {
+        "sha256": "bcf06ec7f2f037d2d2fa3cabf8a9e1cf53490766264728a9eb0d1f60ccb69268",
+        "bytes": 710314
+      },
+      "validation": {
+        "checksPassed": 9,
+        "checkCount": 9,
+        "compositionProfile": "showcase",
+        "compositionStatus": "pass",
+        "errors": 0,
+        "warnings": 0
+      },
+      "desktop_containment": "passed",
+      "visual_review": "passed",
+      "correction_rounds": 2,
+      "receipt": "07-request-lifecycle.receipt.json",
+      "visual_evidence": "07-request-lifecycle.visual-check.html"
+    },
+    {
+      "id": "08-hyperliquid-submission",
+      "diagram_type": "workflow",
+      "output": "08-hyperliquid-submission.html",
+      "specification": {
+        "sha256": "cd105cf501b9758aec53f243f93624c27600488c53c9aeacb3c11a6eed9584b3",
+        "bytes": 3289
+      },
+      "artifact": {
+        "sha256": "bd904c0581165edd32de7d1bbe7840e680351e705725de27cddb0f97162bdec9",
+        "bytes": 706928
+      },
+      "validation": {
+        "checksPassed": 9,
+        "checkCount": 9,
+        "compositionProfile": "showcase",
+        "compositionStatus": "pass",
+        "errors": 0,
+        "warnings": 0
+      },
+      "desktop_containment": "passed",
+      "visual_review": "passed",
+      "correction_rounds": 2,
+      "receipt": "08-hyperliquid-submission.receipt.json",
+      "visual_evidence": "08-hyperliquid-submission.visual-check.html"
+    },
+    {
+      "id": "09-solana-submission",
+      "diagram_type": "workflow",
+      "output": "09-solana-submission.html",
+      "specification": {
+        "sha256": "a10e4555b3ceb11d4ee60de6316e16cfe986cc228dcc8b3c34cde433327c2321",
+        "bytes": 3379
+      },
+      "artifact": {
+        "sha256": "890badb0e91b0ebd19eba161fc4f9f1dec7bc5df4d9eed3f159a6ffb7eabae12",
+        "bytes": 707542
+      },
+      "validation": {
+        "checksPassed": 9,
+        "checkCount": 9,
+        "compositionProfile": "showcase",
+        "compositionStatus": "pass",
+        "errors": 0,
+        "warnings": 0
+      },
+      "desktop_containment": "passed",
+      "visual_review": "failed",
+      "correction_rounds": 2,
+      "receipt": "09-solana-submission.receipt.json",
+      "visual_evidence": "09-solana-submission.visual-check.html",
+      "visual_issue": "2048×1320 下底部约 21% 留白；内容完整，视觉平衡未通过。"
+    },
+    {
+      "id": "10-key-lifecycle",
+      "diagram_type": "lifecycle",
+      "output": "10-key-lifecycle.html",
+      "specification": {
+        "sha256": "78725a59ec02dd21d3e923f7d5e04bd39febb9481baec964004de2582d94b59a",
+        "bytes": 3991
+      },
+      "artifact": {
+        "sha256": "cbd14d8ad528250be8212489ae0e88ba5b3f1d6b9a40f55340c797d6969a3966",
+        "bytes": 712506
+      },
+      "validation": {
+        "checksPassed": 9,
+        "checkCount": 9,
+        "compositionProfile": "showcase",
+        "compositionStatus": "pass",
+        "errors": 0,
+        "warnings": 0
+      },
+      "desktop_containment": "passed",
+      "visual_review": "passed",
+      "correction_rounds": 0,
+      "receipt": "10-key-lifecycle.receipt.json",
+      "visual_evidence": "10-key-lifecycle.visual-check.html"
+    },
+    {
+      "id": "11-cross-platform-architecture",
+      "diagram_type": "architecture",
+      "output": "11-cross-platform-architecture.html",
+      "specification": {
+        "sha256": "9507fa6b35e32175856dd59a1c3183827db63e6be4946171d5af452e53a7ec39",
+        "bytes": 3710
+      },
+      "artifact": {
+        "sha256": "ae1f565bcb9dcd134e9a7e51f8fc555728470add1fa509970a1b80ea2148fa05",
+        "bytes": 711501
+      },
+      "validation": {
+        "checksPassed": 9,
+        "checkCount": 9,
+        "compositionProfile": "showcase",
+        "compositionStatus": "pass",
+        "errors": 0,
+        "warnings": 0
+      },
+      "desktop_containment": "passed",
+      "visual_review": "passed",
+      "correction_rounds": 0,
+      "receipt": "11-cross-platform-architecture.receipt.json",
+      "visual_evidence": "11-cross-platform-architecture.visual-check.html"
+    }
+  ]
+}
