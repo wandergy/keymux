@@ -1,0 +1,41 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="keymux macOS 协同签名工作台设计原型；全部为示例数据，不连接真实服务。">
+  <title>keymux · 协同签名工作台 · 设计原型</title>
+  <script src="theme.js"></script>
+  <link rel="stylesheet" href="styles.css">
+  <script src="prototype.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#main">跳转至主要内容</a>
+  <div class="app-shell">
+    <aside class="sidebar" aria-label="主导航">
+      <div class="traffic-lights" aria-hidden="true"><i></i><i></i><i></i></div>
+      <div class="brand"><svg viewBox="0 0 28 28" aria-hidden="true"><path d="M5 4h5v8l8-8h6L14 14l10 10h-6l-8-8v8H5z" fill="currentColor"/></svg><span>keymux</span></div>
+      <div class="workspace-label">WANDERGY 工作空间</div>
+      <nav>
+        <button class="nav-item active" data-page="requests" aria-current="page"><span class="nav-icon" data-icon="inbox"></span><span>签名请求</span><span class="nav-count">3</span></button>
+        <button class="nav-item" data-page="groups"><span class="nav-icon" data-icon="key"></span><span>密钥组</span></button>
+        <button class="nav-item" data-page="audit"><span class="nav-icon" data-icon="history"></span><span>审计记录</span></button>
+        <button class="nav-item" data-page="security"><span class="nav-icon" data-icon="shield"></span><span>设备与安全</span></button>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="connection"><span class="dot green"></span>演示工作空间</div>
+        <div class="profile"><span class="avatar">Q</span><div><strong>Quincy</strong><small>审核人 · 本机</small></div><span class="profile-mac" data-icon="monitor"></span></div>
+      </div>
+    </aside>
+    <div class="workspace">
+      <header class="topbar"><div class="breadcrumb">Wandergy <span>/</span> <strong id="breadcrumb-title">签名请求</strong></div><div class="topbar-right"><label class="theme-control" for="theme-mode"><span>外观</span><select id="theme-mode"><option value="system">跟随系统</option><option value="light">浅色</option><option value="dark">深色</option></select></label><span class="environment"><span class="dot"></span>测试环境</span><span class="top-divider"></span><span class="clock">演示时间 10:42</span></div></header>
+      <div class="prototype-banner"><span><strong>设计原型</strong><span class="banner-divider">·</span>全部为示例数据</span><span>Touch ID、密钥操作与交易均为模拟，不连接真实服务</span></div>
+      <main id="main" tabindex="-1"></main>
+    </div>
+  </div>
+  <dialog id="modal" aria-labelledby="dialog-title"><div id="dialog-content"></div></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+  <noscript><p class="noscript">此设计原型需要启用 JavaScript 才能切换页面及演示交互。全部内容为示例数据。</p></noscript>
+</body>
+</html>

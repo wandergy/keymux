@@ -1,0 +1,584 @@
+{
+  "checkedAt": "2026-11-11T23:10:15.758Z",
+  "method": "Chrome headless via CDP; real DOM controls and dispatched pointer/key input; no direct application state mutation",
+  "browser": "Chrome/157.0.8103.39",
+  "sourceHashes": {
+    "index.html": "9649c2d7d0722664d82193f53572c05cadbd500cca4a1e03b2420c1d11e6daef",
+    "styles.css": "c416a175d4023959603c1cbdb20f97d58350e8b085f458c991c88ccc4d496520",
+    "prototype.js": "4576e1ec965e858f8416239f05c33dbc7a6fef08493c130fe938b6c28ddb370f",
+    "theme.js": "2c5c43a582048fd76c42eeabce854837ced614c8d835c51d88cde1ab95eb1989"
+  },
+  "checks": [
+    {
+      "name": "theme defaults to system in a new browser profile",
+      "status": "pass"
+    },
+    {
+      "name": "system color scheme changes update the theme live",
+      "status": "pass"
+    },
+    {
+      "name": "manual light preference overrides system changes",
+      "status": "pass"
+    },
+    {
+      "name": "manual dark preference overrides light system",
+      "status": "pass"
+    },
+    {
+      "name": "manual theme preference survives page reload",
+      "status": "pass"
+    },
+    {
+      "name": "returning to system restores automatic changes",
+      "status": "pass"
+    },
+    {
+      "name": "manual theme switch preserves request and demo state",
+      "status": "pass"
+    },
+    {
+      "name": "automatic theme switch preserves open dialog and user input",
+      "status": "pass"
+    },
+    {
+      "name": "unavailable localStorage follows system without breaking manual selection",
+      "status": "pass"
+    },
+    {
+      "name": "initial three requests and prototype disclosure",
+      "status": "pass"
+    },
+    {
+      "name": "light 1440x900 requests navigation and horizontal overflow",
+      "status": "pass",
+      "detail": {
+        "innerWidth": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "bodyScrollWidth": 1440,
+        "heading": "签名请求"
+      }
+    },
+    {
+      "name": "light 1440x900 groups navigation and horizontal overflow",
+      "status": "pass",
+      "detail": {
+        "innerWidth": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "bodyScrollWidth": 1440,
+        "heading": "密钥组"
+      }
+    },
+    {
+      "name": "light 1440x900 audit navigation and horizontal overflow",
+      "status": "pass",
+      "detail": {
+        "innerWidth": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "bodyScrollWidth": 1440,
+        "heading": "审计记录"
+      }
+    },
+    {
+      "name": "light 1440x900 security navigation and horizontal overflow",
+      "status": "pass",
+      "detail": {
+        "innerWidth": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "bodyScrollWidth": 1440,
+        "heading": "设备与安全"
+      }
+    },
+    {
+      "name": "light 1440x900 confirmation has no horizontal overflow",
+      "status": "pass",
+      "detail": {
+        "width": 1440,
+        "left": 435,
+        "right": 1005,
+        "scrollWidth": 568,
+        "clientWidth": 568
+      }
+    },
+    {
+      "name": "light 1440x900 unknown state has no horizontal overflow",
+      "status": "pass",
+      "detail": {
+        "innerWidth": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "bodyScrollWidth": 1440,
+        "heading": "签名请求"
+      }
+    },
+    {
+      "name": "light 1280x800 requests navigation and horizontal overflow",
+      "status": "pass",
+      "detail": {
+        "innerWidth": 1280,
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "bodyScrollWidth": 1280,
+        "heading": "签名请求"
+      }
+    },
+    {
+      "name": "light 1280x800 groups navigation and horizontal overflow",
+      "status": "pass",
+      "detail": {
+        "innerWidth": 1280,
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "bodyScrollWidth": 1280,
+        "heading": "密钥组"
+      }
+    },
+    {
+      "name": "light 1280x800 audit navigation and horizontal overflow",
+      "status": "pass",
+      "detail": {
+        "innerWidth": 1280,
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "bodyScrollWidth": 1280,
+        "heading": "审计记录"
+      }
+    },
+    {
+      "name": "light 1280x800 security navigation and horizontal overflow",
+      "status": "pass",
+      "detail": {
+        "innerWidth": 1280,
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "bodyScrollWidth": 1280,
+        "heading": "设备与安全"
+      }
+    },
+    {
+      "name": "light 1280x800 confirmation has no horizontal overflow",
+      "status": "pass",
+      "detail": {
+        "width": 1280,
+        "left": 355,
+        "right": 925,
+        "scrollWidth": 568,
+        "clientWidth": 568
+      }
+    },
+    {
+      "name": "light 1280x800 unknown state has no horizontal overflow",
+      "status": "pass",
+      "detail": {
+        "innerWidth": 1280,
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "bodyScrollWidth": 1280,
+        "heading": "签名请求"
+      }
+    },
+    {
+      "name": "dark 1440x900 requests navigation and horizontal overflow",
+      "status": "pass",
+      "detail": {
+        "innerWidth": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "bodyScrollWidth": 1440,
+        "heading": "签名请求"
+      }
+    },
+    {
+      "name": "dark 1440x900 groups navigation and horizontal overflow",
+      "status": "pass",
+      "detail": {
+        "innerWidth": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "bodyScrollWidth": 1440,
+        "heading": "密钥组"
+      }
+    },
+    {
+      "name": "dark 1440x900 audit navigation and horizontal overflow",
+      "status": "pass",
+      "detail": {
+        "innerWidth": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "bodyScrollWidth": 1440,
+        "heading": "审计记录"
+      }
+    },
+    {
+      "name": "dark 1440x900 security navigation and horizontal overflow",
+      "status": "pass",
+      "detail": {
+        "innerWidth": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "bodyScrollWidth": 1440,
+        "heading": "设备与安全"
+      }
+    },
+    {
+      "name": "dark 1440x900 confirmation has no horizontal overflow",
+      "status": "pass",
+      "detail": {
+        "width": 1440,
+        "left": 435,
+        "right": 1005,
+        "scrollWidth": 568,
+        "clientWidth": 568
+      }
+    },
+    {
+      "name": "dark 1440x900 unknown state has no horizontal overflow",
+      "status": "pass",
+      "detail": {
+        "innerWidth": 1440,
+        "clientWidth": 1440,
+        "scrollWidth": 1440,
+        "bodyScrollWidth": 1440,
+        "heading": "签名请求"
+      }
+    },
+    {
+      "name": "dark 1280x800 requests navigation and horizontal overflow",
+      "status": "pass",
+      "detail": {
+        "innerWidth": 1280,
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "bodyScrollWidth": 1280,
+        "heading": "签名请求"
+      }
+    },
+    {
+      "name": "dark 1280x800 groups navigation and horizontal overflow",
+      "status": "pass",
+      "detail": {
+        "innerWidth": 1280,
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "bodyScrollWidth": 1280,
+        "heading": "密钥组"
+      }
+    },
+    {
+      "name": "dark 1280x800 audit navigation and horizontal overflow",
+      "status": "pass",
+      "detail": {
+        "innerWidth": 1280,
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "bodyScrollWidth": 1280,
+        "heading": "审计记录"
+      }
+    },
+    {
+      "name": "dark 1280x800 security navigation and horizontal overflow",
+      "status": "pass",
+      "detail": {
+        "innerWidth": 1280,
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "bodyScrollWidth": 1280,
+        "heading": "设备与安全"
+      }
+    },
+    {
+      "name": "dark 1280x800 confirmation has no horizontal overflow",
+      "status": "pass",
+      "detail": {
+        "width": 1280,
+        "left": 355,
+        "right": 925,
+        "scrollWidth": 568,
+        "clientWidth": 568
+      }
+    },
+    {
+      "name": "dark 1280x800 unknown state has no horizontal overflow",
+      "status": "pass",
+      "detail": {
+        "innerWidth": 1280,
+        "clientWidth": 1280,
+        "scrollWidth": 1280,
+        "bodyScrollWidth": 1280,
+        "heading": "签名请求"
+      }
+    },
+    {
+      "name": "all three request types switch and expose distinct purposes",
+      "status": "pass"
+    },
+    {
+      "name": "search no results and clearing restores list",
+      "status": "pass"
+    },
+    {
+      "name": "native confirmation is explicitly a non-system demonstration",
+      "status": "pass"
+    },
+    {
+      "name": "confirmation footer remains reachable by scrolling",
+      "status": "pass",
+      "detail": {
+        "top": 806.171875,
+        "bottom": 878.671875,
+        "height": 900
+      }
+    },
+    {
+      "name": "Escape returns without rejection or signature and restores focus",
+      "status": "pass"
+    },
+    {
+      "name": "Touch ID simulation cancellation preserves review state",
+      "status": "pass"
+    },
+    {
+      "name": "Touch ID simulation success separates signature from submission",
+      "status": "pass"
+    },
+    {
+      "name": "running stop preserves unknown result and original attempt",
+      "status": "pass"
+    },
+    {
+      "name": "pre-protocol cancel followed by review uses a new attempt",
+      "status": "pass"
+    },
+    {
+      "name": "waiting disables new signature",
+      "status": "pass"
+    },
+    {
+      "name": "touch_unavailable disables new signature",
+      "status": "pass"
+    },
+    {
+      "name": "keychain_invalid disables new signature",
+      "status": "pass"
+    },
+    {
+      "name": "unparsed disables new signature",
+      "status": "pass"
+    },
+    {
+      "name": "expired disables new signature",
+      "status": "pass"
+    },
+    {
+      "name": "unknown only queries original result and does not sign or submit",
+      "status": "pass"
+    },
+    {
+      "name": "cancelled_signed only queries original result and does not sign or submit",
+      "status": "pass"
+    },
+    {
+      "name": "submission_unknown only queries original result and does not sign or submit",
+      "status": "pass"
+    },
+    {
+      "name": "device lock blocks authorization without changing request state",
+      "status": "pass"
+    },
+    {
+      "name": "Hyperliquid purpose locks required Agent mode",
+      "status": "pass"
+    },
+    {
+      "name": "Agent k=1 of m=1 valid",
+      "status": "pass",
+      "detail": {
+        "purpose": "hyperliquid",
+        "mode": "agent",
+        "n": 1,
+        "t": 1,
+        "valid": true
+      }
+    },
+    {
+      "name": "Agent k=0 invalid",
+      "status": "pass",
+      "detail": {
+        "purpose": "hyperliquid",
+        "mode": "agent",
+        "n": 1,
+        "t": 0,
+        "valid": false
+      }
+    },
+    {
+      "name": "Agent k>m invalid",
+      "status": "pass",
+      "detail": {
+        "purpose": "hyperliquid",
+        "mode": "agent",
+        "n": 1,
+        "t": 2,
+        "valid": false
+      }
+    },
+    {
+      "name": "human t=1 invalid",
+      "status": "pass",
+      "detail": {
+        "purpose": "solana",
+        "mode": "human",
+        "n": 3,
+        "t": 1,
+        "valid": false
+      }
+    },
+    {
+      "name": "human t>n invalid",
+      "status": "pass",
+      "detail": {
+        "purpose": "solana",
+        "mode": "human",
+        "n": 3,
+        "t": 4,
+        "valid": false
+      }
+    },
+    {
+      "name": "human fractional threshold invalid",
+      "status": "pass",
+      "detail": {
+        "purpose": "solana",
+        "mode": "human",
+        "n": 3,
+        "t": 2.5,
+        "valid": false
+      }
+    },
+    {
+      "name": "human 2-of-2 valid",
+      "status": "pass",
+      "detail": {
+        "purpose": "solana",
+        "mode": "human",
+        "n": 2,
+        "t": 2,
+        "valid": true
+      }
+    },
+    {
+      "name": "human 3-of-3 valid",
+      "status": "pass",
+      "detail": {
+        "purpose": "solana",
+        "mode": "human",
+        "n": 3,
+        "t": 3,
+        "valid": true
+      }
+    },
+    {
+      "name": "valid group creates proposal only, not activated key",
+      "status": "pass"
+    },
+    {
+      "name": "Solana missing external signatures prevents submission",
+      "status": "pass",
+      "detail": [
+        {
+          "text": "拒绝请求",
+          "disabled": true,
+          "action": "reject"
+        },
+        {
+          "text": "取消请求",
+          "disabled": true,
+          "action": "cancel-request"
+        },
+        {
+          "text": "等待外部签名，禁止提交",
+          "disabled": true,
+          "action": "primary"
+        }
+      ]
+    },
+    {
+      "name": "sign-only scenario cannot broadcast a transaction",
+      "status": "pass"
+    },
+    {
+      "name": "refresh preserves old request epoch and marks unsigned request stale",
+      "status": "pass"
+    },
+    {
+      "name": "running blocks same-group refresh but not another group",
+      "status": "pass"
+    },
+    {
+      "name": "unknown blocks same-group refresh but not another group",
+      "status": "pass"
+    },
+    {
+      "name": "source files stayed unchanged during browser run",
+      "status": "pass"
+    },
+    {
+      "name": "no browser console or runtime errors",
+      "status": "pass"
+    }
+  ],
+  "screenshots": [
+    "previews/01-requests.png",
+    "previews/03-key-groups.png",
+    "previews/05-device-security.png",
+    "previews/06-requests-1280.png",
+    "previews/07-dark-requests.png",
+    "previews/09-dark-key-groups.png",
+    "previews/11-dark-device-security.png",
+    "previews/08-dark-native-confirmation.png",
+    "previews/10-dark-unknown-result.png",
+    "previews/02-native-confirmation.png",
+    "previews/02b-native-confirmation-actions.png",
+    "previews/04-unknown-result.png"
+  ],
+  "coverageGaps": [],
+  "consoleErrors": [],
+  "notChecked": [
+    "Real Touch ID, Keychain, cb-mpc, signature generation/verification, network delivery, chain execution, and secret storage are outside this UI prototype.",
+    "VoiceOver, native macOS accessibility, full keyboard navigation, real device recovery, signing/session persistence and crash behavior, and all browser/platform combinations were not tested."
+  ],
+  "summary": {
+    "passed": 69,
+    "failed": 0,
+    "coverageGaps": 0
+  },
+  "visualReview": {
+    "method": "Each of the 12 final PNG files was opened with view_image; request and dialog screenshots were checked for their intended visible states.",
+    "files": [
+      "previews/01-requests.png",
+      "previews/03-key-groups.png",
+      "previews/05-device-security.png",
+      "previews/06-requests-1280.png",
+      "previews/07-dark-requests.png",
+      "previews/09-dark-key-groups.png",
+      "previews/11-dark-device-security.png",
+      "previews/08-dark-native-confirmation.png",
+      "previews/10-dark-unknown-result.png",
+      "previews/02-native-confirmation.png",
+      "previews/02b-native-confirmation-actions.png",
+      "previews/04-unknown-result.png"
+    ],
+    "observations": [
+      "The original seven screenshots explicitly use the light theme; the five added screenshots explicitly use the dark theme.",
+      "Light and dark request overview screenshots show the pending-review state; native-confirmation screenshots show an open design dialog; unknown-result screenshots show the unknown state.",
+      "No unintended horizontal clipping or overlapping content observed. Long request details and the confirmation dialog scroll vertically.",
+      "No real authentication, cryptography, signature, or chain operation is represented by these UI screenshots."
+    ]
+  },
+  "browserInputChecks": "Pointer clicks wait until elementFromPoint confirms the intended visible control is hit; confirmation layout assertions require dialog.open and nonzero dimensions."
+}
